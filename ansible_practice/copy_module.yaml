@@ -1,0 +1,30 @@
+---
+#  this is for create file or directory
+- name: create one directory
+  hosts: all
+  become: true
+  tasks:
+   - name: Create a directory if it does not exist name is devops
+     ansible.builtin.file:
+       path: /tmp/devops
+       state: directory
+       mode: 'u+rw,g-wx,o-rwx' 
+       owner: tariq
+       group: tariq
+
+# this is for create file
+
+---
+#  this is for create file or directory
+- name: create one directory
+  hosts: all
+  become: true
+  tasks:
+   - name: Create a directory if it does not exist name is aws
+     ansible.builtin.file:
+       path: /tmp/aws
+       state: touch
+       mode: 'u+rw,g-wx,o-rwx' 
+       owner: tariq
+       group: tariq
+
