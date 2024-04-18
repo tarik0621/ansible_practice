@@ -1,0 +1,36 @@
+---
+#  this is create multiple directory
+- name: create one directory
+  hosts: all
+  become: true
+  tasks:
+   - name: Create a directory if it does not exist name is devops
+     ansible.builtin.file:
+       path: /tmp/{{item}}
+       state: directory
+       mode: 'u+rw,g-wx,o-rwx' 
+       owner: tariq
+       group: tariq
+     with_items:  
+       - d1
+       - d2
+       - d3 
+
+---
+#  this is for create multiple file
+- name: create   # this is optional
+  hosts: all   # this will be work for all node
+  become: true  # this for become root
+  tasks:
+   - name: Create multiple file if it does not exist
+     ansible.builtin.file:
+       path: /home/tariq/{{item}}
+       state: touch
+       mode: 'u+rw,g-wx,o-rwx' 
+       owner: tariq
+       group: tariq
+   - with_items:
+      - f1
+      - f2
+      - f3     
+
